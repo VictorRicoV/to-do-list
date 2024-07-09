@@ -9,7 +9,34 @@
     <title>Vite Template</title>
   </head>
   <body>
-    
+    <header>
+      <h1 class="title">ToDo</h1>
+      <img src="./assets/images/icon-moon.svg" alt="moon" />
+    </header>
+
+    <main class="main">
+      <form id="form" class="form">
+        <label for="input-task" class="label-task"></label>
+        <input
+          type="text"
+          name="task"
+          id="input-task"
+          class="input-task"
+          placeholder="Create a new toDo..."
+        />
+      </form>
+      <div id="task" class="tasks"></div>
+      <div class="tasks-footer">
+        <span id="item-left">X items left</span>
+        <span id="delete-completed" class="click-element">Clear Completed</span>
+      </div>
+
+      <div id="filters" class="filters">
+        <button data-filter="all" class="filter filter--active">All</button>
+        <button data-filter="active" class="filter">Active</button>
+        <button data-filter="completed" class="filter">Completed</button>
+      </div>
+    </main>
     <script type="module" src="./js/index.js"></script>
   </body>
 </html>

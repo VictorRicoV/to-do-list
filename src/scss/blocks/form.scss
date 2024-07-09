@@ -1,0 +1,8 @@
+.label-task {
+  border: 1px solid #9092a5;
+  border: 1px solid var(--text-color-completed);
+  border-radius: 50%;
+  height: 20px;
+  position: absolute;
+  width: 20px;
+}
