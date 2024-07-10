@@ -3,7 +3,7 @@ import '../scss/styles.scss';
 
 const formElement = document.getElementById('form');
 const inputTaskElement = document.getElementById('input-task');
-const taskElement = document.getElementById('task');
+const tasksElement = document.getElementById('tasks');
 const itemLeftElement = document.getElementById('item-left');
 const deleteElement = document.getElementById('delete-completed');
 const filtersElement = document.getElementById('filters');
