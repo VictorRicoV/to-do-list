@@ -21,6 +21,11 @@ const counterTask = () => {
   itemLeftElement.textContent = `${incompleteTasks} items left`;
 };
 
+const clearCompleted = () => {
+  tasks = tasks.filter(task => !task.completed);
+  insertTasks();
+};
+
 counterTask();
 const insertTasks = () => {
   const fragment = document.createDocumentFragment();
@@ -89,3 +94,5 @@ formElement.addEventListener('submit', event => {
   addTask();
   event.target.reset();
 });
+
+deleteElement.addEventListener('click', clearCompleted);
