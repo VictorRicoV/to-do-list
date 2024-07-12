@@ -16,6 +16,8 @@ let tasks = [
   }
 ];
 
+let currentFilter = 'all';
+
 const counterTask = () => {
   const incompleteTasks = tasks.filter(task => !task.completed).length;
   itemLeftElement.textContent = `${incompleteTasks} items left`;
@@ -27,6 +29,19 @@ const clearCompleted = () => {
 };
 
 counterTask();
+
+const filterTasks = () => {
+  let filteredTasks = tasks;
+
+  if (currentFilter === 'active') {
+    filteredTasks = tasks.filter(task => !task.completed);
+  } else if (currentFilter === 'completed') {
+    filteredTasks = tasks.filter(task => task.completed);
+  }
+
+  return filteredTasks;
+};
+
 const insertTasks = () => {
   const fragment = document.createDocumentFragment();
   tasks.forEach(todo => {
@@ -74,6 +89,14 @@ const completedTask = id => {
   insertTasks();
 };
 
+const setFilter = event => {
+  document.querySelectorAll('.filter').forEach(button => {
+    button.classList.remove('filter--active');
+  });
+  event.target.classList.add('filter--active');
+  insertTasks();
+};
+
 const addTask = () => {
   //crear una tarea nueva y añadirla al array
   const newTask = {
@@ -96,3 +119,10 @@ formElement.addEventListener('submit', event => {
 });
 
 deleteElement.addEventListener('click', clearCompleted);
+
+filtersElement.addEventListener('click', event => {
+  const filter = event.target.dataset.filter;
+  if (!filter) {
+    setFilter(event.target);
+  }
+});
