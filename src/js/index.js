@@ -122,7 +122,7 @@ deleteElement.addEventListener('click', clearCompleted);
 
 filtersElement.addEventListener('click', event => {
   const filter = event.target.dataset.filter;
-  if (!filter) {
-    setFilter(event.target);
-  }
+  if (!filter || currentFilter === filter) return;
+  currentFilter = filter;
+  setFilter(event.target);
 });
