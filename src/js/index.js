@@ -8,6 +8,12 @@ const itemLeftElement = document.getElementById('item-left');
 const deleteElement = document.getElementById('delete-completed');
 const filtersElement = document.getElementById('filters');
 
+const FILTERS = {
+  ALL: 'all',
+  ACTIVE: 'active',
+  COMPLETED: 'completed'
+};
+
 let tasks = [
   {
     id: Date.now(),
@@ -30,12 +36,12 @@ const clearCompleted = () => {
 
 counterTask();
 
-const filterTasks = () => {
+const filterTasks = filter => {
   let filteredTasks = tasks;
 
-  if (currentFilter === 'active') {
+  if (currentFilter === FILTERS.ACTIVE) {
     filteredTasks = tasks.filter(task => !task.completed);
-  } else if (currentFilter === 'completed') {
+  } else if (currentFilter === FILTERS.COMPLETED) {
     filteredTasks = tasks.filter(task => task.completed);
   }
 
@@ -44,7 +50,8 @@ const filterTasks = () => {
 
 const insertTasks = () => {
   const fragment = document.createDocumentFragment();
-  tasks.forEach(todo => {
+  const filteredTasks = filterTasks();
+  filteredTasks.forEach(todo => {
     const newTaskContainer = document.createElement('div');
     newTaskContainer.classList.add('task-container');
     const newTaskCheck = document.createElement('input');
@@ -70,8 +77,6 @@ const insertTasks = () => {
   counterTask();
 };
 
-insertTasks();
-
 const deleteTask = id => {
   tasks = tasks.filter(task => {
     return task.id !== id;
@@ -96,6 +101,7 @@ const setFilter = event => {
   event.target.classList.add('filter--active');
   insertTasks();
 };
+insertTasks();
 
 const addTask = () => {
   //crear una tarea nueva y añadirla al array
